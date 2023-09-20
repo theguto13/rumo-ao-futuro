@@ -1,7 +1,7 @@
 <template>
     <div id="VocationalTest">
         <div class="vocational-test">
-            
+            <div class="question"></div>
         </div>
     </div>
 </template>
