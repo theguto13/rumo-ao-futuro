@@ -1,7 +1,12 @@
 <template>
     <div id="VocationalTest">
-        <div class="vocational-test">
-            <div class="question"></div>
+        <div class="vocational-test" v-if="erro == false && error == undefined">
+            <div class="title">Teste Vocacional Gratuito</div>
+            <div class="progress"></div>
+            <div class="ui">
+                <div class="question"></div>
+                <div class="controls"></div>
+            </div>
         </div>
     </div>
 </template>
