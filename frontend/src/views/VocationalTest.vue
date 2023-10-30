@@ -27,6 +27,7 @@ export default{
     name: 'VocationalTest',
     data() {
         return {
+            isLoading: true,
             questions: undefined,
             qtd_questions: undefined,
             areas: undefined,
@@ -44,6 +45,7 @@ export default{
                     ...area,
                     points: 0
                 }))
+                this.isLoading = false
             }).catch((error) => {
                 this.error = error //'Ocorreu um erro ao carregar as questões do quiz. Entre em contato com nossa equipe e avise-nos.'
             })
