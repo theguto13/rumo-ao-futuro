@@ -115,7 +115,7 @@ export default{
         loaded(){
             setTimeout(() => {
                 this.isLoading = false
-            }, 0 * 1000)
+            }, 2.6 * 1000)
         },
         go_to(num){
             this.current_question = num - 1
