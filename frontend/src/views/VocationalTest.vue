@@ -29,7 +29,7 @@
                     <h3>Responda com calma, pense bem e boa sorte!</h3><br>
                     <button class="btn btn-primary" @click="start = true"><h5 style="margin-bottom: 3px;">Começar teste</h5></button>
                 </div>
-                <div class="screen col-10 mx-auto" v-else-if="start == true && isLoading == false && finished == false">
+                <div class="screen col-10 mx-auto" v-else-if="start == true && isLoading == false && finished == false && finalScreen == false">
                     <div class="question">
                         {{ questions[current_question].question }}
                     </div>
@@ -79,7 +79,7 @@
                     <div class="back-button" @click="finalScreen = false">Revisar respostas</div>
                     <div class="result-button" @click="finished = true; finalScreen = false; result()">Terminar e ver resultado</div>
                 </div>
-                <div class="loading" v-if="finished == true">
+                <div class="loading" v-if="finished == true && isCalculating == true">
                     <div></div>
                     <span>Carregando resultado...</span>
                 </div>
@@ -209,7 +209,8 @@ export default{
         },
         result(){
             this.isCalculating = true
-            this.start = false
+            this.start = true
+            this.finished = true
             this.questions.forEach(question => {
                 this.areas.forEach(area => {
                     if(question.area == area.id){
@@ -239,7 +240,10 @@ export default{
                 responsive: true,
                 maintainAspectRatio: false
             }
-            this.isCalculated = true
+            setTimeout(() => {
+                this.isCalculated = true
+                this.isCalculating = false
+            }, 1.4* 1000)
         }
     },
     components: {
