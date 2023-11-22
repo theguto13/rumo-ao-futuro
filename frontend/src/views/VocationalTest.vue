@@ -3,8 +3,19 @@
         <div class="vocational-test" v-if="erro == false && error == undefined">
             <div class="title">Teste Vocacional Gratuito</div>
             <div class="ui">
-                <div class="progress-bar" v-if="start == true && isLoading == false">
-                    <div class="number" :class="{ 'current': (current_question + 1) === question_number, 'answered': questions[question_number - 1].answered !== -1 }" @click="go_to(question_number)" v-for="question_number in qtd_questions" :key="question_number" :style="'display: '+number_style+';'">{{ question_number }}</div>
+                <div class="progress-bar" v-if="start == true && isLoading == false && finished == false">
+                    <div 
+                    class="number" 
+                    :class="{ 
+                        'current': (current_question + 1) === question_number, 
+                        'answered': questions[question_number - 1].answered !== -1 
+                    }" 
+                    @click="go_to(question_number)" 
+                    v-for="question_number in qtd_questions" 
+                    :key="question_number" 
+                    :style="'display: '+number_style+';'">
+                        {{ question_number }}
+                    </div>
                     <div class="number show-hidden" @click="progress_mode = !progress_mode; number_display()">
                         <span v-if="!progress_mode">Mostrar progresso</span>
                         <span v-else>Esconder</span>
@@ -15,53 +26,65 @@
                     <span>Carregando perguntas...</span>
                 </div>
                 <div class="start" v-if="start == false && isLoading == false">
-                    <b>Responda com calma, pense bem e boa sorte!</b><br>
-                    <button class="btn btn-primary" @click="start = true">Começar teste</button>
+                    <h3>Responda com calma, pense bem e boa sorte!</h3><br>
+                    <button class="btn btn-primary" @click="start = true"><h5 style="margin-bottom: 3px;">Começar teste</h5></button>
                 </div>
-                <div class="screen col-10 mx-auto" v-else-if="start == true && isLoading == false">
+                <div class="screen col-10 mx-auto" v-else-if="start == true && isLoading == false && finished == false">
                     <div class="question">
                         {{ questions[current_question].question }}
                     </div>
                     <div class="controls">
                         <div class="options">
-                            <div class="option level5" :class="{ 'selected': questions[current_question].answered == 1 }">
-                                <h4 @click="questions[current_question].answered = 1">Concordo plenamente</h4>
+                            <div class="option level5" :class="{ 'selected': questions[current_question].answered == 1 }" @click="questions[current_question].answered = 1">
+                                <h4>Concordo plenamente</h4>
                             </div>
-                            <div class="option level4" :class="{ 'selected': questions[current_question].answered == 0.78 }">
-                                <h4 @click="questions[current_question].answered = 0.78">Concordo</h4>
+                            <div class="option level4" :class="{ 'selected': questions[current_question].answered == 0.8 }" @click="questions[current_question].answered = 0.8">
+                                <h4>Concordo</h4>
                             </div>
-                            <div class="option level3" :class="{ 'selected': questions[current_question].answered == 0.5 }">
-                                <h4 @click="questions[current_question].answered = 0.5">Neutro</h4>
+                            <div class="option level3" :class="{ 'selected': questions[current_question].answered == 0.5 }" @click="questions[current_question].answered = 0.5">
+                                <h4>Neutro</h4>
                             </div>
-                            <div class="option level2" :class="{ 'selected': questions[current_question].answered == 0.2 }">
-                                <h4 @click="questions[current_question].answered = 0.2">Discordo</h4>
+                            <div class="option level2" :class="{ 'selected': questions[current_question].answered == 0.2 }" @click="questions[current_question].answered = 0.2">
+                                <h4>Discordo</h4>
                             </div>
-                            <div class="option level1" :class="{ 'selected': questions[current_question].answered == 0 }">
-                                <h4 @click="questions[current_question].answered = 0">Discordo plenamente</h4>
+                            <div class="option level1" :class="{ 'selected': questions[current_question].answered == 0 }" @click="questions[current_question].answered = 0">
+                                <h4>Discordo plenamente</h4>
                             </div>
                         </div>
                         <div class="buttons">
                             <div class="previous">
-                                <div v-if="current_question + 1 > 1">
-                                    <h4 @click="previous()">Questão anterior</h4>
+                                <div v-if="current_question + 1 > 1" @click="previous()">
+                                    <h4>Questão anterior</h4>
                                 </div>
                                 <div v-else>
                                     <h4 style="opacity: 0;">Questão anterior</h4>
                                 </div>
                             </div>
                             <div class="next">
-                                <div v-if="current_question + 1 == qtd_questions">
-                                    <h4 @click="finish()">Terminar o teste</h4>
+                                <div v-if="current_question + 1 == qtd_questions" @click="finish()">
+                                    <h4>Terminar o teste</h4>
                                 </div>
-                                <div v-else-if="finishing == false">
-                                    <h4 @click="next()">Próxima questão</h4>
+                                <div v-else-if="finishing == false" @click="next()">
+                                    <h4>Próxima questão</h4>
                                 </div>
-                                <div v-else>
-                                    <h4 @click="next_finishing()">Próxima questão</h4>
+                                <div v-else @click="next_finishing()">
+                                    <h4>Próxima questão</h4>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="finalScreen" v-if="finalScreen == true && finished == false">
+                    <h2>Você finalizou o teste.</h2>
+                    <div class="back-button" @click="finalScreen = false">Revisar respostas</div>
+                    <div class="result-button" @click="finished = true; finalScreen = false; result()">Terminar e ver resultado</div>
+                </div>
+                <div class="loading" v-if="finished == true">
+                    <div></div>
+                    <span>Carregando resultado...</span>
+                </div>
+                <div class="result">
+                    <Radar :data="radarData" :options="radarOptions" v-if="isCalculated == true"/>
                 </div>
             </div>
         </div>
@@ -70,6 +93,25 @@
 
 <script>
 import axios from 'axios'
+import {
+  Chart as ChartJS,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend
+} from 'chart.js'
+import { Radar } from 'vue-chartjs'
+
+ChartJS.register(
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend
+)
 
 export default{
     name: 'VocationalTest',
@@ -84,9 +126,16 @@ export default{
             progress_mode: true,
             number_style: 'block',
             current_question: 0,
+            current_question_finishing: 0,
             start: false,
-            unanswered: undefined,
-            finishing: false
+            unanswered: [],
+            finishing: false,
+            finished: false,
+            finalScreen: false,
+            isCalculating: false,
+            isCalculated: false,
+            radarOptions: {},
+            radarData: {}
         }
     },
     mounted() {
@@ -95,7 +144,6 @@ export default{
                 ...questions,
                 answered: -1
             }))
-            console.log(this.questions.length)
             this.qtd_questions = this.questions.length
             axios.get('http://localhost:8080/questions/areas').then(res => {
                 this.areas = res.data.areas.map((area) => ({
@@ -103,7 +151,6 @@ export default{
                     points: 0
                 }))
                 this.loaded()
-                console.log(this.questions)
             }).catch((error) => {
                 this.error = error //'Ocorreu um erro ao carregar as questões do quiz. Entre em contato com nossa equipe e avise-nos.'
             })
@@ -130,17 +177,73 @@ export default{
         next(){
             this.current_question += 1
         },
+        next_finishing(){
+            if(this.unanswered.length - 1 > this.current_question_finishing){
+                this.current_question_finishing += 1
+                this.current_question = this.unanswered[this.current_question_finishing]
+            }else{
+                this.current_question = this.questions.length - 1
+            }
+        },
         previous(){
             this.current_question -= 1
         },
         finish(){
-            this.finishing = true
-            this.questions.forEach((question, index) => {
-                if(question.answered == -1){
-                    this.unanswered.push(index)
+            if(this.questions[this.current_question].answered >= 0){
+                this.finishing = true
+                this.unanswered = []
+                this.current_question_finishing = 0
+                this.questions.forEach((question, index) => {
+                    if(question.answered == -1){
+                        this.unanswered.push(index)
+                    }
+                })
+                if(this.unanswered.length > 0){
+                    this.current_question = this.unanswered[this.current_question_finishing]
+                }else{
+                    this.finalScreen = true
                 }
+            }/*else{
+
+            }*/
+        },
+        result(){
+            this.isCalculating = true
+            this.start = false
+            this.questions.forEach(question => {
+                this.areas.forEach(area => {
+                    if(question.area == area.id){
+                        area.points += (question.answered * question.points)
+                    }
+                })
             })
+            var labels = []
+            var datasetsData = []
+            this.areas.forEach(area => {
+                labels.push(area.area)
+                datasetsData.push(area.points)
+            })
+            var datasets = [{
+                label: 'Sua pontuação',
+                backgroundColor: '#9bbe8a',
+                borderColor: '#67825a',
+                pointBackgroundColor: '#67825a',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#67825a',
+                data: datasetsData
+            }]
+            this.radarData.labels = labels
+            this.radarData.datasets = datasets
+            this.radarOptions = {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+            this.isCalculated = true
         }
+    },
+    components: {
+        Radar
     }
 }
 </script>
@@ -237,6 +340,7 @@ export default{
         background-color: var(--logo-color);
         border: none;
         border-radius: 30px;
+        padding: 8px 14px;
     }
     .vocational-test .ui{
         border-radius: 13px;
@@ -262,6 +366,7 @@ export default{
         padding: 12px;
         border: 2px solid #646464;
         border-radius: 6px;
+        cursor: pointer;
     }
     .vocational-test .options .option h4{
         margin: 0;
@@ -297,6 +402,23 @@ export default{
     .vocational-test .buttons > div{
         border-radius: 20px;
         padding: 10px 14px;
+    }
+    .finalScreen{
+        display: flex;
+        height: 60vh;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .finalScreen > div{
+        padding: 7px 15px;
+        border: none;
+        border-radius: 20px;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+    .finalScreen > h2{
+        margin-top: 10px;
     }
     /*@media (max-width: 809px){
         .vocational-test .progress-bar{
