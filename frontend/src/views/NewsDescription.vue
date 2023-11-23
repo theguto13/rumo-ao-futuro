@@ -1,9 +1,9 @@
 <template>
     <div id="NewsDescription">
         <div class="news" v-if="loaded">
-            <h1 class="title col-8 col-lg-6">{{ news.title }}</h1>
-            <p class="subtitle col-8 col-lg-6">{{ news.subtitle }}</p>
-            <div class="head col-8 col-lg-6">
+            <h1 class="title col-8 col-lg-7">{{ news.title }}</h1>
+            <p class="subtitle col-8 col-lg-7">{{ news.subtitle }}</p>
+            <div class="head col-8 col-lg-7">
                 <div class="signature">
                     <h6 class="author">
                         por {{ news.author }}

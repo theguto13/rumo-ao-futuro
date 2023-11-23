@@ -67,7 +67,7 @@ INSERT INTO areas(area) VALUES
 ('Artes e Entretenimento'),
 ('Agricultura e Pecuária');
 
-INSERT INTO questions(question, area, points) VALUES
+/*INSERT INTO questions(question, area, points) VALUES
 -- Perguntas para Ciências Naturais e Matemática (Área 1)
 ('Você se interessa por observar a natureza e entender como ela funciona?', 1, 5),
 ('Gosta de estudar plantas, animais e ecossistemas?', 1, 4),
@@ -122,4 +122,29 @@ INSERT INTO questions(question, area, points) VALUES
 ('Gosta de trabalhar ao ar livre e com a natureza?', 8, 4),
 ('Acha interessante a agricultura sustentável e orgânica?', 8, 3),
 ('Se imagina gerenciando uma vinícola ou produzindo vinhos?', 8, 4),
+('Acredita que a produção de alimentos é uma necessidade vital?', 8, 5);*/
+
+INSERT INTO questions(question, area, points) VALUES
+('Gosta de resolver problemas matemáticos complexos?', 1, 5),
+('Acha fascinante a química e a estrutura molecular?', 1, 4),
+
+('Acha empolgante a ideia de programar robôs e sistemas autônomos?', 2, 5),
+('Você gosta de criar e editar vídeos ou imagens digitalmente?', 2, 3),
+
+('Você se interessa por entender a sociedade, suas dinâmicas e culturas?', 3, 5),
+('Acha interessante explorar a psicologia das pessoas e seu comportamento?', 3, 5),
+
+('Você se preocupa com o bem-estar das pessoas e deseja ajudar a curar doenças?', 4, 5),
+('Você se preocupa com a saúde mental e o bem-estar emocional das pessoas?', 4, 5),
+
+('Você se sente à vontade liderando projetos e tomando decisões estratégicas?', 5, 5),
+('Você se sente à vontade liderando reuniões e apresentando ideias de negócios?', 5, 5),
+
+('Você gosta de projetar e construir coisas?', 6, 5),
+('Você se interessa por construção e infraestrutura urbana?', 6, 5),
+
+('Você aprecia o teatro e a atuação?', 7, 5),
+('Se sente envolvido pelo mundo da música e composição?', 7, 5),
+
+('Você se interessa por agricultura, cultivo de alimentos ou criação de animais?', 8, 5),
 ('Acredita que a produção de alimentos é uma necessidade vital?', 8, 5);

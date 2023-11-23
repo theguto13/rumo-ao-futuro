@@ -47,9 +47,13 @@ export default {
         color: black;
         text-decoration: none;
         font-weight: bold;
+        font-size: 1.2em;
     }
 
     header nav a.router-link-active {
         color: var(--logo-color);
+    }
+    @media (max-width: 740px){
+        
     }
 </style>

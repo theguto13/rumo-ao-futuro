@@ -7,8 +7,9 @@
                     <div 
                     class="number" 
                     :class="{ 
-                        'current': (current_question + 1) === question_number, 
-                        'answered': questions[question_number - 1].answered !== -1 
+                        'current': (current_question + 1) === question_number,
+                        'answered': questions[question_number - 1].answered !== -1,
+                        'current_answered': (current_question + 1) === question_number && questions[question_number - 1].answered !== -1
                     }" 
                     @click="go_to(question_number)" 
                     v-for="question_number in qtd_questions" 
@@ -57,7 +58,7 @@
                                     <h4>Questão anterior</h4>
                                 </div>
                                 <div v-else>
-                                    <h4 style="opacity: 0;">Questão anterior</h4>
+                                    <h4>Questão anterior</h4>
                                 </div>
                             </div>
                             <div class="next">
@@ -74,19 +75,45 @@
                         </div>
                     </div>
                 </div>
-                <div class="finalScreen" v-if="finalScreen == true && finished == false">
+                <div class="finalScreen" v-if="finalScreen == true">
                     <h2>Você finalizou o teste.</h2>
-                    <div class="back-button" @click="finalScreen = false">Revisar respostas</div>
-                    <div class="result-button" @click="finished = true; finalScreen = false; result()">Terminar e ver resultado</div>
+                    <div class="finalScreen_buttons">
+                        <div class="back-button" @click="finished = false; finalScreen = false">Revisar respostas</div>
+                        <div class="result-button" @click="finished = true; finalScreen = false; result()">Terminar e ver resultado</div>
+                    </div>
                 </div>
-                <div class="loading" v-if="finished == true && isCalculating == true">
+                <div class="loading result_loading" v-if="finished == true && isCalculating == true">
                     <div></div>
                     <span>Carregando resultado...</span>
                 </div>
-                <div class="result">
-                    <Radar :data="radarData" :options="radarOptions" v-if="isCalculated == true"/>
+                <div class="result" :style="{display: result_opacity ? 'block' : 'none'}">
+                    <div class="result_title">
+                        <h3>Resultado do teste</h3>
+                        <h6>Lembre-se de que esse é um teste superficial, você deve levar outros fatores em consideração na hora de escolher uma carreira.</h6>
+                        <h6>Veja a seguir algumas sugestões de cursos recomendados de acordo com suas aptidões.</h6>
+                    </div>
+                    <div class="final_result">
+                        <div class="radar">
+                            <Radar :data="radarData" :options="radarOptions" v-if="isCalculated == true" style="height: 40vh;" />
+                        </div>
+                        <div class="suggestions" ref="suggestions"></div>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="vocational-test-info">
+            <div class="title"><h1>Com base em quê nosso quiz é feito?</h1></div>
+            <p>Desenvolvemos um inovador teste vocacional utilizando tecnologia de Inteligência Artificial para proporcionar uma análise abrangente e precisa das suas preferências e aptidões. Ao responder às perguntas apresentadas, classificadas em escalas que variam de "Concordo Plenamente" a "Discordo Plenamente", você contribuirá para a formação de uma pontuação específica para cada área em destaque.
+            
+            Atribuímos valores ponderados a cada resposta, refletindo a intensidade do seu posicionamento. Esses valores são distribuídos da seguinte maneira:</p>
+            <ul class="score-list">
+                <li class="score-list-item">Concordo Plenamente: 100%</li>
+                <li class="score-list-item">Concordo: 80%</li>
+                <li class="score-list-item">Neutro: 50%</li>
+                <li class="score-list-item">Discordo: 20%</li>
+                <li class="score-list-item">Discordo Plenamente: 0%</li>
+            </ul>
+            <p>Ao finalizar o teste, suas pontuações individuais passam por um processo de análise e são posteriormente exibidas visualmente por meio de um gráfico do tipo Radar. Este gráfico proporciona uma representação intuitiva, destacando as áreas em que você demonstrou maior afinidade. Além disso, são fornecidas recomendações de cursos que se destacam nas áreas em que você obteve as pontuações mais elevadas. Importante enfatizar que este teste vocacional é uma ferramenta informativa e não deve ser considerado como uma verdade absoluta sobre suas habilidades e inclinações.</p>
         </div>
     </div>
 </template>
@@ -134,6 +161,7 @@ export default{
             finalScreen: false,
             isCalculating: false,
             isCalculated: false,
+            result_opacity: false,
             radarOptions: {},
             radarData: {}
         }
@@ -202,6 +230,7 @@ export default{
                     this.current_question = this.unanswered[this.current_question_finishing]
                 }else{
                     this.finalScreen = true
+                    this.finished = true
                 }
             }/*else{
 
@@ -240,10 +269,67 @@ export default{
                 responsive: true,
                 maintainAspectRatio: false
             }
-            setTimeout(() => {
+            const courses = {
+                1: [
+                    { name: 'Biologia', area: 1 },
+                    { name: 'Astronomia', area: 1 },
+                    { name: 'Matemática Pura', area: 1 },
+                ],
+                2: [
+                    { name: 'Ciência da Computação', area: 2 },
+                    { name: 'Engenharia de Software', area: 2 },
+                    { name: 'Design de Jogos', area: 2 },
+                ],
+                3: [
+                    { name: 'Sociologia', area: 3 },
+                    { name: 'Psicologia', area: 3 },
+                    { name: 'História', area: 3 },
+                ],
+                4: [
+                    { name: 'Medicina', area: 4 },
+                    { name: 'Enfermagem', area: 4 },
+                    { name: 'Psicologia Clínica', area: 4 },
+                ],
+                5: [
+                    { name: 'Administração de Empresas', area: 5 },
+                    { name: 'Logística', area: 5 },
+                    { name: 'Economia', area: 5 },
+                ],
+                6: [
+                    { name: 'Engenharia Civil', area: 6 },
+                    { name: 'Design Industrial', area: 6 },
+                    { name: 'Energias Renováveis', area: 6 },
+                ],
+                7: [
+                    { name: 'Teatro e Artes Cênicas', area: 7 },
+                    { name: 'Artes Visuais', area: 7 },
+                    { name: 'Música', area: 7 },
+                ],
+                8: [
+                    { name: 'Agronomia', area: 8 },
+                    { name: 'Zootecnia', area: 8 },
+                    { name: 'Viticultura e Enologia', area: 8 },
+                ],
+            }
+            const sortedAreas = this.areas.slice().sort((a, b) => b.points - a.points)
+            const topAreaCourses = courses[sortedAreas[0].id].slice(0, 3)
+            const secondTopAreaCourses = courses[sortedAreas[1].id].slice(0, 3)
+            const thirdTopAreaCourses = courses[sortedAreas[2].id].slice(0, 3)
+            const suggestedCourses = [...topAreaCourses, ...secondTopAreaCourses, ...thirdTopAreaCourses]
+            this.$nextTick(() => {
                 this.isCalculated = true
                 this.isCalculating = false
-            }, 1.4* 1000)
+                this.$refs.suggestions.innerHTML = suggestedCourses
+                    .map(course => `<div class="card" style="margin: 8px 0; box-shadow: 4px 4px 13px gray;">
+                            <div class="card-body">
+                                ${course.name}
+                            </div>
+                        </div>`)
+                    .join('')
+            })
+            this.isCalculated = true
+            this.isCalculating = false
+            this.result_opacity = true
         }
     },
     components: {
@@ -310,6 +396,7 @@ export default{
         border-radius: 3px;
         color: white;
         cursor: pointer;
+        transition: .2s all;
     }
     .vocational-test .progress-bar .number.answered{
         color: #fff;
@@ -323,6 +410,13 @@ export default{
         font-weight: bold;
         background-color: #fff;
         border: 2px solid var(--logo-color);
+        padding: 2px;
+    }
+    .vocational-test .progress-bar .number.current_answered{
+        color: var(--primary-color);
+        font-weight: bold;
+        background-color: #fff;
+        border: 2px solid var(--primary-color);
         padding: 2px;
     }
     .vocational-test .progress-bar .number.show-hidden{
@@ -349,7 +443,7 @@ export default{
     .vocational-test .ui{
         border-radius: 13px;
         border: 2px solid #646464;
-        min-height: 60vh;
+        min-height: 70vh;
         margin: 15px 4%;
     }
     .vocational-test .ui .question{
@@ -357,6 +451,7 @@ export default{
         font-size: 1.6em;
         font-weight: bold;
         text-align: center;
+        transition: .2s all;
     }
     .vocational-test .controls *{
         user-select: none;
@@ -377,6 +472,7 @@ export default{
     }
     .vocational-test .options .option.selected{
         color: white;
+        transition: .2s all;
     }
     .vocational-test .options .option.level5.selected{
         background-color: var(--primary-color);
@@ -387,8 +483,9 @@ export default{
         border-color: var(--secondary-color);
     }
     .vocational-test .options .option.level3.selected{
-        background-color: rgb(207, 204, 0);
-        border-color: rgb(207, 204, 0);
+        background-color: var(--quinquinary-color);
+        border-color: var(--quinquinary-color);
+        color: #181818;
     }
     .vocational-test .options .option.level2.selected{
         background-color: var(--tertiary-color);
@@ -402,10 +499,14 @@ export default{
         display: flex;
         align-items: center;
         justify-content: space-between;
+        text-align: center;
     }
-    .vocational-test .buttons > div{
+    .vocational-test .buttons .next > div, .vocational-test .buttons .previous > div{
         border-radius: 20px;
-        padding: 10px 14px;
+        padding: 20px 26px;
+    }
+    .vocational-test .buttons h4{
+        margin-bottom: 0;
     }
     .finalScreen{
         display: flex;
@@ -414,19 +515,85 @@ export default{
         align-items: center;
         flex-direction: column;
     }
-    .finalScreen > div{
-        padding: 7px 15px;
-        border: none;
-        border-radius: 20px;
-        text-transform: uppercase;
-        cursor: pointer;
-    }
     .finalScreen > h2{
         margin-top: 10px;
     }
-    /*@media (max-width: 809px){
-        .vocational-test .progress-bar{
-            width: 95%;
+    .finalScreen .finalScreen_buttons{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .finalScreen .finalScreen_buttons > div{
+        margin: 15px 7px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        color: #fff;
+        background-size: 200%;
+        transition: 0.6s;
+    }
+    .finalScreen_buttons .back-button{
+        background-image: linear-gradient(to left, var(--secondary-color), var(--primary-color), var(--secondary-color));
+    }
+    .finalScreen_buttons .result-button{
+        background-image: linear-gradient(to left, var(--tertiary-color), var(--quaternary-color), var(--tertiary-color));
+    }
+    .finalScreen .finalScreen_buttons > div:hover{
+        background-position: right;
+    }
+    .result_loading{
+        z-index: 9;
+    }
+    .result .final_result{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .result .final_result > div{
+        width: 45%;
+        padding: 30px 2.5%;
+    }
+    .result_title{
+        padding: 15px 0;
+        text-align: center;
+    }
+    .vocational-test-info{
+        margin: 25px 4%;
+    }
+    .vocational-test-info p{
+        font-size: 1.2em;
+        margin: 10px 0;
+    }
+    .score-list{
+        list-style: none;
+        padding: 0;
+        text-align: center;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 300px;
+        margin: 0;
+    }
+    .score-list-item{
+        font-size: 1.2em;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+    @media (max-width: 900px){
+        .final_result{
+            flex-direction: column;
         }
-    }*/
+        .result .final_result > div{
+            padding: 8px 0;
+            width: 70%;
+        }
+    }
 </style>

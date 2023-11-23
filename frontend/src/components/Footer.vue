@@ -20,7 +20,7 @@
                 <div class="title">Contato</div>
                 <div class="local">
                     <img src="../assets/local.svg" alt="Ícone de ponteiro de mapa, navegação">
-                    <div class="text">Rodovia SC 283, s/n Fragosos, Concórdia, SC, 89703-720</div>
+                    <div class="text">Rodovia SC 283, s/n Fragosos <br> Concórdia, SC, 89703-720</div>
                 </div>
                 <div class="mail">
                     <img src="../assets/mail.svg" alt="Ícone de e-mail">
@@ -83,6 +83,7 @@ export default{
         color: white;
         text-decoration: none;
         display: block;
+        font-size: 1.17em;
     }
     footer .contact img{
         height: 24px;
@@ -114,6 +115,15 @@ export default{
         }
         footer .logo{
             margin: 0 auto;
+        }
+    }
+    @media (max-width: 945px){
+        footer .logo{
+            width: 250px;
+            min-width: none;
+        }
+        footer .contact .local .text{
+            text-wrap: wrap;
         }
     }
 </style>

@@ -42,6 +42,7 @@ export default {
     --secondary-color: #9BBE8A;
     --tertiary-color: #EA7EA9;
     --quaternary-color: #BA3653;
+    --quinquinary-color: #FF914D;
     --logo-color: #774BC4;
   }
   @media (max-width: 1586px){
