@@ -122,7 +122,79 @@
         <div class="infographic">
             <img src="../assets/important_dates.png" alt="Infográfico contendo datas importantes do Enem">
         </div>
-        
+        <div class="latest_news">
+            <div class="img"><img src="../assets/dido.png" alt="Professor da rede federal de ensino Eduardo João Moro"></div>
+            <div class="text">
+                <div class="title">Uma conversa sobre Escolha Profissional, com Eduardo "Dido" Moro</div>
+                <p>O professor e sociólogo Eduardo João Moro, popularmente conhecido como Dido, revela os fundamentos cruciais do planejamento de carreira em cinco pilares imperdíveis. Antes de decidir sua trajetória profissional, é essencial considerar: autoconhecimento, família, formação, informação e contexto social. Esses princípios, compartilhados pelo professor, são essenciais para orientar escolhas futuras, evitando frustrações e surpresas inesperadas.</p>
+                <div class="buttons">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Continuar lendo</button>
+                    <router-link to="/noticias">Ver todas as notícias</router-link>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Uma conversa sobre "Escolha Profissional", com Eduardo "Dido" Moro</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h3>ESCOLHA PROFISSIONAL</h3>
+                <p>Segundo o professor e sociólogo Eduardo João Moro, existem 5 pilares do planejamento de carreira que você precisa saber antes de fazer sua escolha profissional:</p>
+                <ol>
+                    <li>
+                        <strong>Autoconhecimento</strong>
+                        <p>“Pense sobre o que é realmente importante para você, o que lhe interessa, o que lhe agrada, o que gosta e sabe fazer bem, assim como o que lhe desagrada e o que você não pensa em fazer na sua vida profissional.”</p>
+                    </li>
+                    <li>
+                        <strong>Família</strong>
+                        <p>“Compartilhe seus planos com as pessoas importantes da sua vida. Abra o jogo e construa um ambiente de diálogo. Esteja preparado para ouvir críticas e para lutar pelo que acredita. Se não obtiver resultado nas primeiras tentativas, insista. Valerá a pena!”</p>
+                    </li>
+                    <li>
+                        <strong>Formação</strong>
+                        <p>“Planeje cuidadosamente a sua formação acadêmica. Não adianta amontoar certificados de cursos, pois eles precisam dialogar entre si. Ainda que o mercado exija versatilidade, sua formação precisa ser coerente e ajustada à profissão que deseja desempenhar.”</p>
+                    </li>
+                    <li>
+                        <strong>Informação</strong>
+                        <p>“Busque conhecer o mercado de trabalho em que deseja atuar, incluindo informações sobre empregabilidade, remuneração e perspectivas de especialistas. Estar atento ao cenário político e econômico do país também pode ser útil no momento de planejar os próximos passos na carreira. Informe-se!”</p>
+                    </li>
+                    <li>
+                        <strong>Contexto Social</strong>
+                        <p>“O contexto social em que está inserido influencia diretamente o seu Planejamento de Carreira. Planos de curto, médio e longo prazo devem levar em consideração finanças pessoais, tempo disponível, deveres familiares etc. Organize-se, planeje-se e eleja prioridades.”</p>
+                    </li>
+                </ol>
+                <div class="new_book">
+                    <ul>
+                        <li>Dido lança novo livro: "Como ajudar seu filho na escolha da profissão"</li>
+                    </ul>
+                    <img src="../assets/dido_book.png" alt="Livro de Eduardo João Moro: 'Como ajudar seu filho na escolha da profissão'">
+                </div>
+                <p>Tudo que foi elencado por Eduardo Moro pode servir de base para descobrir sua carreira futura se estiver em dúvidas daquilo que quer seguir, ou para se sentir mais confiante de sua escolha atual, assim haverá menor probabilidade de frustrações futuras ou surpresas repentinas e inesperadas. Por isso que o Projeto Voe, criado também por Eduardo João Moro no Instituto Federal de Concórdia, é tão importante para os alunos da instituição os ajudando a encontrar seu caminho futuro e alcançar suas perspectivas. Você pode saber mais informações sobre ajuda profissional em seus livros, como “Como ajudar seu filho na escolha profissional” ou “3 erros que você não pode cometer (e que eu cometi)” e acessar seu Instagram <a target="_blank" href="https://www.instagram.com/dido.voe/" style="color: var(--quaternary-color);">@dido.voe</a>.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar notícia</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="brazilian-methodology">
+            <h2>Metodologia brasileira de ensino</h2>
+            <p>A estrutura do sistema educacional brasileiro é definida por duas legislaturas principais. A <strong>Lei de Diretrizes e Bases da Educação</strong> – conhecida como LDB – e as diretrizes gerais da <strong>Constituição Federal de 1988</strong>. Tem caráter obrigatório para os pais ou responsáveis que as crianças ou adolescentes concluam a educação básica, assim como é dever do Estado oferecer essa educação. Ela é constituída com os seguintes critérios:</p>
+            <ul>
+                <li><strong>Educação Infantil:</strong> duração de 4 anos, com alunos de 0 a 3 anos;</li>
+                <li><strong>Pré-escola:</strong> duração de 3 anos, com alunos de 4 a 6 anos;</li>
+                <li><strong>Ensino Fundamental:</strong> duração de 9 anos, com alunos de 6 a 14 anos;</li>
+                <li><strong>Ensino Médio:</strong> duração de 3 anos, com alunos de 15 a 17 anos;</li>
+                <li><strong>Ensino Médio Técnico:</strong> escolas podem oferecer cursos técnicos em períodos contraturnos – que são os períodos extraclasse – para seus alunos. A duração é variável, podendo ser de 1 a 3 anos.</li>
+            </ul>
+            <p>Em última pesquisa, feita pelo <strong>Pisa</strong>, dentre os 65 países avaliados, <strong>o Brasil ocupa a vergonhosa posição de 53º</strong>, mesmo considerando que o Ministério da Educação é o segundo Ministério que mais gasta dinheiro no Brasil, atrás apenas do Ministério da Saúde. Isso inicia a questão da reforma no sistema educacional brasileiro, que é tema de uma grande discussão atualmente, pois a reforma é amplamente defendida no Ministério da Educação, principalmente pela Ministra da Educação Básica, Maria Guimarães Castro. Porém, também há uma grande massa de críticos que tomam como exemplo os Estados Unidos e Chile, onde esse modelo - muito semelhante com o que a reforma brasileira propõe - resultou em exclusão social e aumento da desigualdade, posteriormente causando a elitização do ensino- somente pessoas da elite têm acesso a educação de qualidade.</p>
+            <p>Atualmente o ensino brasileiro é muito engessado, impossibilitando um aprendizado mais direcionado para a carreira que o aluno deseja seguir. Países como Finlândia, Inglaterra, França e Austrália possibilitam essa flexibilização no currículo quando o estudante atinge 15 anos de idade, tomados como exemplos para a Ministra, de um sistema que deu certo e deveria ser seguido. Como defendido pela professora da USP, Carmen Moraes, é necessário analisar diversos fatores para projetar uma reforma efetiva no ensino que não resulte nos velhos problemas conhecidos em outras experiências parecidas. Fatores sociais, segundo Moraes, são imprescindíveis na análise de um plano para implementação da reforma.</p>
+            <p>Observado em países como Inglaterra, houve um processo chamado “Mercadorização” no ensino. Esse processo torna a educação mais competitiva, privatizada e com um rigoroso controle de qualidade, a partir da utilização de uma lógica empresarial no contexto educacional. Para que o governo saiba como fazer os investimentos necessários na área, são utilizados dados administrativos. Já como indicadores de sucesso dos investimentos já feitos são utilizadas metas numéricas e índices de desempenho. Porém, assim como os modelos Norte Americano e Chileno, há críticas principalmente sociais.</p>
+            <p>A reforma ocorrida na Finlândia, diferente das outras já citadas focou em uma forma diferente de garantir uma reforma no sistema educacional do país. Ao invés de direcionar o corpo discente para alguma área de interesse, buscou valorizar os docentes, melhorando os salários e as condições do trabalho. Ainda, o país investiu fortemente em pesquisa e desenvolvimento.</p>
+        </div>
     </div>
 </template>
 
@@ -299,6 +371,64 @@ export default{
         width: 50%;
         transition: .2s all;
     }
+    .latest_news{
+        margin: 40px 4%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .latest_news > *{
+        display: inline-block;
+
+    }
+    .latest_news .buttons{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+
+    }
+    .latest_news .buttons *{
+        margin: 3px 0;
+    }
+    .latest_news .text{
+        width: 50%;
+    }
+    .latest_news .text .title{
+        font-weight: bold;
+        font-size: 2rem;
+    }
+    .new_book{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 15px 0;
+    }
+    .brazilian-methodology{
+        margin: 30px 4%;
+    }
+    @media (min-width: 576px){
+        .modal-dialog{
+            max-width: 70%;
+        }
+    }
+    @media (max-width: 1300px){
+        .latest_news{
+            flex-direction: column;
+        }
+        .latest_news > *{
+            width: 70%;
+        }
+        .latest_news .text{
+            width: 70%;
+        }
+        .latest_news .img{
+            text-align: center;
+        }
+        .latest_news .img img{
+            width: 100%;
+        }
+    }
     @media (max-width: 1240px){
         .ways-to-enter .card{
             width: 35%;
@@ -331,6 +461,14 @@ export default{
         }
         .infographic img{
             width: 85%;
+        }
+    }
+    @media (max-width: 550px){
+        .latest_news > *{
+            width: 100%;
+        }
+        .latest_news .text{
+            width: 100%;
         }
     }
     @media (max-width: 500px){

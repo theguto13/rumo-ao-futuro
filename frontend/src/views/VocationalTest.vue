@@ -27,7 +27,6 @@
                     <span>Carregando perguntas...</span>
                 </div>
                 <div class="start" v-if="start == false && isLoading == false">
-                    <h3>Responda com calma, pense bem e boa sorte!</h3><br>
                     <button class="btn btn-primary" @click="start = true"><h5 style="margin-bottom: 3px;">Começar teste</h5></button>
                 </div>
                 <div class="screen col-10 mx-auto" v-else-if="start == true && isLoading == false && finished == false && finalScreen == false">
@@ -429,7 +428,7 @@ export default{
     }
     .vocational-test .start{
         display: flex;
-        height: 60vh;
+        height: 70vh;
         justify-content: center;
         align-items: center;
         flex-direction: column;
@@ -507,6 +506,9 @@ export default{
     }
     .vocational-test .buttons h4{
         margin-bottom: 0;
+    }
+    .vocational-test .buttons > div > div{
+        cursor: pointer;
     }
     .finalScreen{
         display: flex;

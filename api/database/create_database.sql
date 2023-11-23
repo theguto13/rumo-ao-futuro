@@ -57,6 +57,29 @@ DELIMITER ;
 INSERT INTO admins(username, name, password) VALUES
 ('guto', 'Augusto Júnior', '$2a$07$AtPSJdSmm24NmFv1Gmi7peVySp/7QfFSAE9KAcrq6kbKSAZMa1uTy');
 
+INSERT INTO news(title, slug, subtitle, content, author, publishedDate, updatedDate) 
+VALUES (
+    'Descoberta Arqueológica Revela Antiga Cidade Submersa: Ruínas Surpreendentes Emergem nas Profundezas do Oceano',
+    'descoberta-arqueologica-antiga-cidade-submersa',
+    'Exploradores subaquáticos encontram vestígios incríveis de uma civilização perdida há séculos.',
+    '<p>Em uma expedição subaquática emocionante, exploradores descobriram as impressionantes ruínas de uma antiga cidade submersa, revelando uma visão fascinante do passado perdido.</p>
+
+    <p>As descobertas arqueológicas incluem templos majestosos, praças movimentadas e estruturas intricadamente esculpidas, todas submersas nas profundezas do oceano. Os pesquisadores acreditam que essas ruínas podem ser os restos de uma civilização avançada que desapareceu misteriosamente há séculos.</p>
+
+    <p>O líder da expedição, Dr. Alexandra Mendes, comentou: "Estamos diante de uma descoberta sem precedentes. Essas ruínas podem reescrever completamente a história de uma sociedade antiga até então desconhecida. A arquitetura e os artefatos encontrados sugerem uma cultura sofisticada e avançada para sua época."</p>
+
+    <p>Os exploradores também recuperaram artefatos intrigantes, como arte cerâmica finamente decorada, instrumentos musicais elaborados e até mesmo fragmentos de manuscritos preservados. Esses itens fornecem insights valiosos sobre a vida cotidiana, crenças religiosas e realizações científicas dessa antiga civilização.</p>
+
+    <p>O conteúdo descoberto está sendo cuidadosamente documentado e preservado para análises futuras. Os especialistas planejam utilizar tecnologias avançadas, incluindo datação por radiocarbono, para determinar a idade exata dessas ruínas misteriosas.</p>
+
+    <p>O autor deste relato, Dr. Mendes, é um renomado arqueólogo especializado em descobertas subaquáticas. Sua paixão por desvendar os segredos escondidos nas profundezas do oceano o levou a diversas expedições bem-sucedidas ao redor do mundo.</p>
+
+    <p>Até a data de publicação desta notícia (<strong>2023-11-23</strong>), não houveram mais atualizações. A notícia será atualizada conforme mais informações forem reveladas durante as análises em andamento.</p>',
+    1,
+    '2023-11-23 09:00:00',
+    NULL
+);
+
 INSERT INTO areas(area) VALUES
 ('Ciências Naturais e Matemática'),
 ('Tecnologia e Computação'),

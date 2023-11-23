@@ -12,7 +12,6 @@
                     <router-link to="/">Início</router-link>
                     <router-link to="/teste-vocacional">Teste vocacional</router-link>
                     <router-link to="/noticias">Notícias</router-link>
-                    <router-link to="/sobre-nos">Sobre nós</router-link>
                     <router-link to="/admin">Administração do site</router-link>
                 </nav>
             </div>
